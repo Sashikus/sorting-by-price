@@ -7,15 +7,15 @@ import com.example.app.BaseHelper;
 
 public class TestBase {
 
-	protected BaseHelper app;
+	protected BaseHelper helper;
 
 	@Before
 	public void setUp() throws Exception {
-		app = new BaseHelper();
+		helper = new BaseHelper();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		app.stop();
+		helper.stop();
 	}
 }

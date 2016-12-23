@@ -1,6 +1,9 @@
 package com.example.app;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -111,14 +114,19 @@ public class BaseHelper {
 		click(By.xpath(tab));
 	}
 
-	public boolean isSortingByPriceByDefault() {
-		if (isElementPresent(By.xpath(PRICE_SORTING_TAB))) {
-			return true;
-		}
-		return false;
+	public void verifySortByDefault() {
+		assertTrue(isElementPresent(By.xpath(PRICE_SORTING_TAB)));
 	}
 
-	public boolean validateThatTabIsOpened(String transport) {
-		return (getURL().toLowerCase().contains(transport.toLowerCase()));
+	public void verifyUrlContainsTabName(String tabName) {
+		String url = getURL();
+		assertTrue(url.toUpperCase().contains(tabName.toUpperCase()));
+	}
+
+	public void comparePrices() {
+		List<Float> listOfPrices = getListOfPrices();
+		List<Float> expectedList = new ArrayList<Float>(listOfPrices);
+		Collections.sort(listOfPrices);
+		assertTrue("the list of prices isn't sorted", expectedList.equals(listOfPrices));
 	}
 }
