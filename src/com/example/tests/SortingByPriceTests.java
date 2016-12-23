@@ -11,19 +11,22 @@ import org.junit.Test;
 
 public class SortingByPriceTests extends TestBase {
 
-	public static final String AIRPLANE_TAB = "//span[@data-key='dw.flight']";
-	public static final String BUS_TAB = "//span[@data-key='dw.bus']";
+	private static final String TRAIN_TAB = "//span[@data-key='dw.bus']";
+	private static final String FLIGHT_TAB = "//span[@data-key='dw.flight']";
+	private static final String BUS_TAB = "//span[@data-key='dw.bus']";
 
 	@Test
 	public void verifyThatSortingByPriceForTrainsIsCorrect() throws Exception {
 		openResultsPage();
+		app.validateThatTabIsOpened("train");
 		comparePrices();
 	}
 
 	@Test
 	public void verifyThatSortingByPriceForAirplanesIsCorrect() throws Exception {
 		openResultsPage();
-		app.switchTabTo(AIRPLANE_TAB);
+		app.switchTabTo(FLIGHT_TAB);
+		app.validateThatTabIsOpened("flight");
 		comparePrices();
 	}
 
@@ -31,6 +34,7 @@ public class SortingByPriceTests extends TestBase {
 	public void verifyThatSortingByPriceForBussesIsCorrect() throws Exception {
 		openResultsPage();
 		app.switchTabTo(BUS_TAB);
+		app.validateThatTabIsOpened("bus");
 		comparePrices();
 	}
 
@@ -38,7 +42,7 @@ public class SortingByPriceTests extends TestBase {
 	private void openResultsPage() {
 		app.openMainPage();
 		app.goToResultsPage();
-		app.isSortingByPriceByDeafault();
+		app.isSortingByPriceByDefault();
 	}
 
 	private void comparePrices() {

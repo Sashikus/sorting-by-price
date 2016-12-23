@@ -15,16 +15,16 @@ public class BaseHelper {
 	public static WebDriver driver;
 	public static String baseUrl;
 
-	public static final String BASE_URL = "http://www.goeuro.de/";
-	public static final String FILTER_FROM = "Berlin, Deutschland";
-	public static final String FILTER_TO = "Prag, Tschechien";
+	private static final String BASE_URL = "http://www.goeuro.de/";
+	private static final String FILTER_FROM = "Berlin, Deutschland";
+	private static final String FILTER_TO = "Prag, Tschechien";
 
-	public static final String CHECKBOX_ACCOMODATION = "//div[@class='hotel-checkbox']/label/span";
-	public static final String PRICE_CONTAINER = "div.Result__priceContainer___3s9kI";
-	public static final String PRICE_MAIN = "span.Result__priceMain___25qv5";
-	public static final String PRICE_FRACTION = "span.Result__priceFraction___16hVT";
-	public static final String SUBMIT_BUTTON = "search-form__submit-btn";
-	public static final String PRICE_SORTING_TAB = "//div[@class='Sorting__mainActive___3vu1G']/span[@data-key='dw.sorting.price']";
+	private static final String CHECKBOX_ACCOMODATION = "//div[@class='hotel-checkbox']/label/span";
+	private static final String PRICE_CONTAINER = "div.Result__priceContainer___3s9kI";
+	private static final String PRICE_MAIN = "span.Result__priceMain___25qv5";
+	private static final String PRICE_FRACTION = "span.Result__priceFraction___16hVT";
+	private static final String SUBMIT_BUTTON = "search-form__submit-btn";
+	private static final String PRICE_SORTING_TAB = "//div[@class='Sorting__mainActive___3vu1G']/span[@data-key='dw.sorting.price']";
 
 	public BaseHelper() {
 		System.setProperty("webdriver.chrome.driver", "chromedriver");
@@ -111,10 +111,14 @@ public class BaseHelper {
 		click(By.xpath(tab));
 	}
 
-	public boolean isSortingByPriceByDeafault() {
+	public boolean isSortingByPriceByDefault() {
 		if (isElementPresent(By.xpath(PRICE_SORTING_TAB))) {
 			return true;
 		}
 		return false;
+	}
+
+	public boolean validateThatTabIsOpened(String transport) {
+		return (getURL().toLowerCase().contains(transport.toLowerCase()));
 	}
 }
