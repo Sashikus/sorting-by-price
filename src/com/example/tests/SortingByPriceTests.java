@@ -10,20 +10,36 @@ import java.util.List;
 import org.junit.Test;
 
 public class SortingByPriceTests extends TestBase {
+
+	public static final String AIRPLANE_TAB = "//span[@data-key='dw.flight']";
+	public static final String BUS_TAB = "//span[@data-key='dw.bus']";
+
 	@Test
 	public void verifyThatSortingByPriceForTrainsIsCorrect() throws Exception {
-		app.openMainPage();
-		app.goToResultsPage();
+		openResultsPage();
 		comparePrices();
 	}
 
-	// verifyThatSortingByPriceForAirplanesIsCorrect
-	// TODO
+	@Test
+	public void verifyThatSortingByPriceForAirplanesIsCorrect() throws Exception {
+		openResultsPage();
+		app.switchTabTo(AIRPLANE_TAB);
+		comparePrices();
+	}
 
-	// verifyThatSortingByPriceForBussesIsCorrect
-	// TODO
+	@Test
+	public void verifyThatSortingByPriceForBussesIsCorrect() throws Exception {
+		openResultsPage();
+		app.switchTabTo(BUS_TAB);
+		comparePrices();
+	}
 
 	// -- private methods --
+	private void openResultsPage() {
+		app.openMainPage();
+		app.goToResultsPage();
+		app.isSortingByPriceByDeafault();
+	}
 
 	private void comparePrices() {
 		List<Float> listOfPrices = app.getListOfPrices();

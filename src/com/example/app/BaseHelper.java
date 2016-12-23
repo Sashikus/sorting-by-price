@@ -24,6 +24,7 @@ public class BaseHelper {
 	public static final String PRICE_MAIN = "span.Result__priceMain___25qv5";
 	public static final String PRICE_FRACTION = "span.Result__priceFraction___16hVT";
 	public static final String SUBMIT_BUTTON = "search-form__submit-btn";
+	public static final String PRICE_SORTING_TAB = "//div[@class='Sorting__mainActive___3vu1G']/span[@data-key='dw.sorting.price']";
 
 	public BaseHelper() {
 		System.setProperty("webdriver.chrome.driver", "chromedriver");
@@ -104,5 +105,16 @@ public class BaseHelper {
 			prices.add(wholePrice);
 		}
 		return prices;
+	}
+
+	public void switchTabTo(String tab) {
+		click(By.xpath(tab));
+	}
+
+	public boolean isSortingByPriceByDeafault() {
+		if (isElementPresent(By.xpath(PRICE_SORTING_TAB))) {
+			return true;
+		}
+		return false;
 	}
 }
